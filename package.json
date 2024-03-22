@@ -1,0 +1,19 @@
+{
+  "name": "talent",
+  "version": "1.2.0",
+  "description": "ecommerce app ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "dps",
+    "resto",
+    "app"
+  ],
+  "author": "Prince De mawo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.1"
+  }
+}
