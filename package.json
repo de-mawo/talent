@@ -3,8 +3,9 @@
   "version": "1.2.0",
   "description": "ecommerce app ",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "node ./api/index.js"
+    "dev": "nodemon ./api/index.js"
   },
   "keywords": [
     "dps",
@@ -14,6 +15,12 @@
   "author": "Prince De mawo",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.1"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1",
+    "pg": "^8.11.5",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }

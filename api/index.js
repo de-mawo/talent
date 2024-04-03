@@ -1,46 +1,22 @@
-const express = require("express");
+
+import express, { json } from "express";
+import {getUsers, createUser, getUserById, updateUser, deleteUser } from "./userQueries.js";
+import {getMenus} from "./menuQueries.js"
+
 const app = express();
 const port = 3000;
 
-app.use(express.json());
+app.use(json());
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.json({"success": "Hi from My Server"}).status(200);
 });
-app.get("/user", (req, res) => {
-  const user = [
-    {
-      id: "1",
-      name: "Prince",
-      email: "info@bath.co.za",
-    },
-    {
-      id: "1",
-      name: "Prince",
-      email: "info@bath.co.za",
-    },
-    {
-      id: "1",
-      name: "Prince",
-      email: "info@bath.co.za",
-    },
-    {
-      id: "1",
-      name: "Prince",
-      email: "info@bath.co.za",
-    },
-  ];
-  res.json(user).status(200);
-});
-
-app.post('/users', (req, res) => {
-  const data = req.body;
-  console.log(data);
-  res.json("success").status(200)
-
-})
-
-app.delete("/users/:id")
+app.get("/users", getUsers);
+app.get('/users/:id', getUserById)
+app.post('/users', createUser)
+app.patch('/users/:id', updateUser)
+app.delete('/users/:id', deleteUser)
+app.get("/menus", getMenus);
 
 
 
@@ -48,4 +24,4 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-module.exports = app;
+export default app;
