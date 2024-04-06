@@ -8,15 +8,19 @@ const port = 3000;
 
 app.use(json());
 
-app.get("/", (req, res) => {
-  res.json({"success": "Hi from My Server"}).status(200);
-});
+app.get("/", );
+
+
+
 app.get("/users", getUsers);
 app.get('/users/:id', getUserById)
 app.post('/users', createUser)
 app.patch('/users/:id', updateUser)
 app.delete('/users/:id', deleteUser)
 app.get("/menus", getMenus);
+
+
+
 
 
 

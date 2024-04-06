@@ -12,6 +12,8 @@ export const getUsers = (req, res) => {
 
 
   export const getUserById = (req, res) => {
+
+   
     const id = req.params.id
   
     pool.query('SELECT * FROM "User" WHERE id = $1', [id], (error, results) => {
@@ -30,7 +32,7 @@ export const getUsers = (req, res) => {
       if (error) {
         throw error
       }
-      console.log(results);
+      
       res.status(201).send(`User added with ID: ${results.id}`)
     })
   }
