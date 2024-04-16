@@ -1,23 +1,26 @@
 
-import express, { json } from "express";
-import {getUsers, createUser, getUserById, updateUser, deleteUser } from "./userQueries.js";
-import {getMenus} from "./menuQueries.js"
+import express, { json, urlencoded } from "express";
+import userRoutes from './routes/user.js'
 
 const app = express();
-const port = 3000;
-
-app.use(json());
-
-app.get("/", );
+const port = 4000;
 
 
+// These are needed for POST and PUT requests,
+app.use(json());  // to recognize the incoming Request Object as a JSON Object
+app.use(urlencoded({extended: true})) //  to recognize the incoming Request Object as strings or arrays. 
 
-app.get("/users", getUsers);
-app.get('/users/:id', getUserById)
-app.post('/users', createUser)
-app.patch('/users/:id', updateUser)
-app.delete('/users/:id', deleteUser)
-app.get("/menus", getMenus);
+//Test route
+app.get("/", (req, res) => {
+  res.json({"success": "Hi from My Server"}).status(200);
+});
+
+
+// Routes
+app.use('/api/v1/user', userRoutes)
+
+
+
 
 
 
