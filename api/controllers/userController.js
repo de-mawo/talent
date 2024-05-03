@@ -3,8 +3,7 @@ import prisma from "../utils/prisma.js";
 export async function addUser(req, res, next) {
   try {
     const body = await req.body;
-    console.log(req.body);
-
+    
     const { name, email } = body;
 
     await prisma.user.create({
