@@ -18,8 +18,6 @@ const extractImage = (profile) => {
   }
 };
 
-
-console.log("this is google id=====>",process.env.GOOGLE_CLIENT_ID);
 passport.use(
   new GoogleStrategy(
     {
@@ -29,6 +27,8 @@ passport.use(
       //   passReqToCallback: true,
     },
     async function (accessToken, refreshToken, profile, done) {
+      console.log("This is a profile =>", profile);
+
       const email = extractEmail(profile);
       const image = extractImage(profile);
 
@@ -60,11 +60,11 @@ passport.use(
   )
 );
 
-passport.serializeUser((user) => {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(async (id) => {
+passport.deserializeUser(async (id, done) => {
   try {
     const checkUser = await prisma.user.findUnique({
       where: {
@@ -72,7 +72,9 @@ passport.deserializeUser(async (id) => {
       },
     });
     done(null, checkUser);
-  } catch (error) {}
+  } catch (error) {
+    done(error);
+  }
 });
 
 export default passport;
