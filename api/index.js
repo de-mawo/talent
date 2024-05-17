@@ -5,6 +5,7 @@ import session from "express-session";
 import userRoutes from './routes/user.js'
 import categories from './routes/category.js'
 import authRoutes from './routes/auth.js'
+import menuRoutes from './routes/menu.js'
 import redisStore from './utils/redis.js'
 import passport from "./utils/passport.js";
 import { __prod__ } from "./utils/constants.js";
@@ -47,6 +48,7 @@ app.use(passport.session())  // allow passport to use "express-session".
 app.use('/auth',authRoutes)
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/category', categories)
+app.use('/api/v1/menu', menuRoutes)
 
 
 
